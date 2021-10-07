@@ -11,4 +11,4 @@ conda activate testmonai
 #cd /hubnspoke
 pwd
 echo $$
-python hubnspoke/flnode/server.py
+python decentral_fl/aggregator/coordinator/src/server.py

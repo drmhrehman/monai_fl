@@ -41,7 +41,7 @@ class MonaiFLService(monaifl_pb2_grpc.MonaiFLServiceServicer):
                 print("sending model...") 
                 print(modelFile)
                 checkpoint = t.load(modelFile)
-                t.save(checkpoint['weights'], buffer)
+                t.save(checkpoint, buffer)
             else:
                 print("initial model does not exist, initializing and sending a new one...")
                 t.save(self.model.state_dict(), buffer)

@@ -4,4 +4,4 @@
 cd /hubnspoke
 pwd
 echo $$
-python /hubnspoke/hub/testmonai.py
+python /trainer/substra/testmonai.py
