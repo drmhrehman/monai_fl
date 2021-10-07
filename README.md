@@ -165,8 +165,45 @@ Following platforms are neccessary to run this project.
   conda install numpy
   ```
 <!-- USAGE EXAMPLES -->
-## Usage
+## Running Centralized FL Workflows
 
+</p>
+<p align="center">
+<img src="images/Hub-n-Spoke.png" alt="MONAI-FL" width="600" height="400" align="center">
+</p>
+
+Reference notebook
+https://github.com/Project-MONAI/tutorials/blob/master/2d_classification/mednist_tutorial.ipynb
+
+Mount the dataset:
+ This repository contains the demo dataset. If you are cloning this repository, you do not need to mount any dataset. Otherwise, you must execute the cell 5 from the reference notebook, extract the dataset at your preferred location and set the path in testmonai.py 
+
+Running FL Nodes first:
+1. Open a new terminal
+2. Activate conda environment
+3. Navigate into code repository (currently it is not dockerized)
+  ```sh
+  $ cd monaifl/hubnspoke
+  ```
+4. Run the node@($monaifl/hubnspoke/)
+  ```sh
+    python flnode/node1.py
+    python flnode/node2.py
+  ```
+Running Hub:
+1. Open a new terminal
+2. Activate conda environment
+3. Navigate into code repository (currently it is not dockerized)
+  ```sh
+  $ cd monaifl/hubnspoke
+  ```
+4. Run the hub@($monaifl/hubnspoke/)
+  ```sh
+  python hub/start.py
+  ```
+CAUTION: The Hub side code does not require any GPU installation but for the client side you must have a CUDA-enabled device to initiate the training. 
+
+## Running Decentralized FL Workflows
 Reference notebook
 
 https://github.com/Project-MONAI/tutorials/blob/master/2d_classification/mednist_tutorial.ipynb
@@ -179,9 +216,9 @@ Running Server:
 2. Activate conda environment
 3. Navigate into code repository (currently it is not dockerized)
   ```sh
-  $ cd monaifl
+  $ cd monaifl/decentral_fl
   ```
-4. Run the server@($monaifl/)
+4. Run the server@($monaifl/decentral_fl/)
   ```sh
     python aggregator/coordinator/src/server.py
   ```
@@ -190,9 +227,9 @@ Running Client:
 2. Activate conda environment
 3. Navigate into code repository (currently it is not dockerized)
   ```sh
-  $ cd monaifl
+  $ cd monaifl/decentral_fl
   ```
-4. Run the client@($monaifl/)
+4. Run the client@($monaifl/decentral_fl/)
   ```sh
   python trainer/substra/testmonai.py
   ```
