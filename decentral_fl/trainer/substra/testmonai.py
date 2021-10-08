@@ -4,7 +4,7 @@ sys.path.append('.')
 
 import torch
 from io import BytesIO
-from monai.networks.nets import DenseNet121
+from monai.networks.nets import densenet121
 from monai.transforms import (Activations, AddChannel, AsDiscrete, Compose, LoadImage, RandFlip, RandRotate, RandZoom,
     ScaleIntensity, ToTensor,)
 from monaiopener import MonaiOpener, MedNISTDataset
@@ -66,7 +66,7 @@ def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1, datasetname='MedNIST1'
     test_loader = torch.utils.data.DataLoader(test_ds, batch_size=128, num_workers=2)
 
     # model initiliatization
-    ma.model = DenseNet121(spatial_dims=2, in_channels=1, out_channels=mo.num_class)#.to(device)
+    ma.model = densenet121(spatial_dims=2, in_channels=1, out_channels=mo.num_class)#.to(device)
 
     # model loss function
     ma.loss_function = torch.nn.CrossEntropyLoss()
