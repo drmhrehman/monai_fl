@@ -19,7 +19,7 @@ def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1, datasetname='MedNIST1'
     print(cwd)
 
     datasetName = datasetname
-    data_path = './data_provider/synthetic_dataset/src/'
+    data_path = '../data_provider/synthetic_dataset/src/'
     #data_path = os.path.join(cwd, "trainer", "substra")
     data_dir = os.path.join(data_path, datasetName)
     folders = os.listdir(data_dir)
