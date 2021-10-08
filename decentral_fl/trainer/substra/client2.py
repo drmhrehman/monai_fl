@@ -3,7 +3,7 @@ from common.utils import Mapping
 from trainer.substra.testmonai import instantiateMonaiAlgo
 
 if __name__ == '__main__':
-    ma, class_names = instantiateMonaiAlgo(0.3, 0.5)
+    ma, class_names = instantiateMonaiAlgo(0.3, 0.5, 'MedNIST2')
     client = Client("client2", "localhost:50051")
 
     client.bootstrap(ma.model, ma.optimizer)

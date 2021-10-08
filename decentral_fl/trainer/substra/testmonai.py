@@ -14,12 +14,13 @@ from common.utils import Mapping
 
 from pathlib import Path
 
-def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1):
+def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1, datasetname='MedNIST1'):
     cwd = Path.cwd()
     print(cwd)
 
-    datasetName = 'MedNIST'
-    data_path = os.path.join(cwd, "trainer", "substra")
+    datasetName = datasetname
+    data_path = './data_provider/synthetic_dataset/src/'
+    #data_path = os.path.join(cwd, "trainer", "substra")
     data_dir = os.path.join(data_path, datasetName)
     folders = os.listdir(data_dir)
     #model_dir = "./model/"
