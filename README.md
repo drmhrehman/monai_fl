@@ -220,18 +220,22 @@ Running Server:
   ```
 4. Run the server@($monaifl/decentral_fl/)
   ```sh
-    python aggregator/coordinator/src/server.py
+    python aggregator/src/server.py
   ```
 Running Client:
-1. Open a new terminal
-2. Activate conda environment
+1. Open two new terminals
+2. Activate conda environment in both terminals
 3. Navigate into code repository (currently it is not dockerized)
   ```sh
   $ cd monaifl/decentral_fl
   ```
-4. Run the client@($monaifl/decentral_fl/)
+4. Run the client at each terminal@($monaifl/decentral_fl/)
   ```sh
-  python trainer/substra/testmonai.py
+  python trainer/client1.py
+  ```
+
+  ```sh
+  python trainer/client2.py
   ```
 CAUTION: The server side code does not require any GPU installation but for the client side you must have a CUDA-enabled device to initiate the training. 
 
