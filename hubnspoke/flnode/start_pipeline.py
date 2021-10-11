@@ -10,6 +10,10 @@ from pipeline.monaialgo import MonaiAlgo
 from common.utils import Mapping
 
 from pathlib import Path
+import logging
+logging.basicConfig(format='%(asctime)s - %(message)s')
+logger = logging.getLogger()
+logger.setLevel(logging.NOTSET)
 
 def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1, dataset_name='MedNIST1'):
     cwd = Path.cwd()
@@ -21,12 +25,12 @@ def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1, dataset_name='MedNIST1
     folders = os.listdir(data_dir)
 
     mo = MonaiOpener(data_dir)
-    print("----------------------------")
-    print("Dataset Summary")
+    logger.info("----------------------------")
+    logger.info("Dataset Summary")
     print("----------------------------")
     mo.data_summary(folders)
     train_x, train_y, val_x, val_y, test_x, test_y = mo.get_x_y(folders, frac_val, frac_test)
-    print(f"Training count: {len(train_x)}, Validation count: {len(val_x)}, Test count: {len(test_x)}")
+    logger.info(f"Training count: {len(train_x)}, Validation count: {len(val_x)}, Test count: {len(test_x)}")
 
     # getting class names
     class_names = mo.class_names
