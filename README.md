@@ -185,7 +185,7 @@ Running FL Nodes first:
   ```sh
   $ cd monaifl/hubnspoke
   ```
-4. Run the node@($monaifl/hubnspoke/)
+4. Run the node at each terminal@($monaifl/hubnspoke/)
   ```sh
     python flnode/node1.py
     python flnode/node2.py
@@ -232,9 +232,6 @@ Running Client:
 4. Run the client at each terminal@($monaifl/decentral_fl/)
   ```sh
   python trainer/client1.py
-  ```
-
-  ```sh
   python trainer/client2.py
   ```
 CAUTION: The server side code does not require any GPU installation but for the client side you must have a CUDA-enabled device to initiate the training. 
