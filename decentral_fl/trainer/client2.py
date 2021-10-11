@@ -4,7 +4,7 @@ from trainer.startpipeline import instantiateMonaiAlgo
 
 if __name__ == '__main__':
     ma, class_names = instantiateMonaiAlgo(0.3, 0.5, 'MedNIST2')
-    client = Client("client2", "localhost:50051")
+    client = Client("client2", "localhost:50052")
 
     client.bootstrap(ma.model, ma.optimizer)
 
