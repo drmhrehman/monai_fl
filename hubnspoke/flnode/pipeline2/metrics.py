@@ -5,8 +5,8 @@ import json
 import logging
 import sys
 
-from flnode.pipeline import opener, utils
-from flnode.pipeline.workspace import MetricsWorkspace
+from flnode.pipeline2 import opener, utils
+from flnode.pipeline2.workspace import MetricsWorkspace
 
 logger = logging.getLogger(__name__)
 REQUIRED_FUNCTIONS = set(['score'])

@@ -7,8 +7,8 @@ import sys
 sys.path.append('.')
 
 from common import utils, exceptions
-from flnode.pipeline import opener 
-from flnode.pipeline.workspace import (AlgoWorkspace, CompositeAlgoWorkspace,
+from flnode.pipeline2 import opener 
+from flnode.pipeline2.workspace import (AlgoWorkspace, CompositeAlgoWorkspace,
                                     AggregateAlgoWorkspace)
 
 

@@ -1,0 +1,136 @@
+2021-09-08 10:27:13,954 - DataStats - INFO - 
+=== Transform input info -- CastToTyped ===
+2021-09-08 10:27:13,958 - DataStats - INFO - img statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([4, 128, 128, 128])
+Value range: (-1.0, 1.0)
+2021-09-08 10:27:13,958 - DataStats - INFO - seg statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([1, 128, 128, 128])
+Value range: (0.0, 1.0)
+2021-09-08 10:27:13,961 - DataStats - INFO - img_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(16, dtype=int16), 'bitpix': array(32, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/images/psCROMIS2ICH_01082-0005-00003-000001.nii.gz'}
+2021-09-08 10:27:13,963 - DataStats - INFO - seg_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(2, dtype=int16), 'bitpix': array(8, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/labels/psCROMIS2ICH_01082-0005-00003-000001.nii.gz'}
+2021-09-08 10:27:13,963 - DataStats - INFO - img_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(109, 237), (13, 141), (102, 230)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:13,963 - DataStats - INFO - seg_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(109, 237), (13, 141), (102, 230)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:13,974 - DataStats - INFO - 
+=== Transform input info -- CastToTyped ===
+2021-09-08 10:27:13,978 - DataStats - INFO - img statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([4, 128, 128, 128])
+Value range: (-1.0, 1.0)
+2021-09-08 10:27:13,978 - DataStats - INFO - seg statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([1, 128, 128, 128])
+Value range: (0.0, 1.0)
+2021-09-08 10:27:13,980 - DataStats - INFO - img_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(16, dtype=int16), 'bitpix': array(32, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/images/psCROMIS2ICH_01020-0004-00002-000001.nii.gz'}
+2021-09-08 10:27:13,982 - DataStats - INFO - seg_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(2, dtype=int16), 'bitpix': array(8, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/labels/psCROMIS2ICH_01020-0004-00002-000001.nii.gz'}
+2021-09-08 10:27:13,982 - DataStats - INFO - img_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(100, 228), (114, 242), (97, 225)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:13,982 - DataStats - INFO - seg_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(100, 228), (114, 242), (97, 225)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:15,395 - DataStats - INFO - 
+=== Transform input info -- CastToTyped ===
+2021-09-08 10:27:15,399 - DataStats - INFO - img statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([4, 128, 128, 128])
+Value range: (-1.0, 1.0)
+2021-09-08 10:27:15,400 - DataStats - INFO - seg statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([1, 128, 128, 128])
+Value range: (0.0, 1.0)
+2021-09-08 10:27:15,402 - DataStats - INFO - img_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(16, dtype=int16), 'bitpix': array(32, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/images/psCROMIS2ICH_01096-0006-00002-000001.nii.gz'}
+2021-09-08 10:27:15,403 - DataStats - INFO - seg_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(2, dtype=int16), 'bitpix': array(8, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/labels/psCROMIS2ICH_01096-0006-00002-000001.nii.gz'}
+2021-09-08 10:27:15,403 - DataStats - INFO - img_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(39, 167), (118, 246), (120, 248)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:15,403 - DataStats - INFO - seg_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(39, 167), (118, 246), (120, 248)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:16,117 - DataStats - INFO - 
+=== Transform input info -- CastToTyped ===
+2021-09-08 10:27:16,121 - DataStats - INFO - img statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([4, 128, 128, 128])
+Value range: (-1.0, 1.0)
+2021-09-08 10:27:16,121 - DataStats - INFO - seg statistics:
+Type: <class 'torch.Tensor'>
+Shape: torch.Size([1, 128, 128, 128])
+Value range: (0.0, 1.0)
+2021-09-08 10:27:16,123 - DataStats - INFO - img_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(16, dtype=int16), 'bitpix': array(32, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/images/psCROMIS2ICH_01041-0005-00002-000001.nii.gz'}
+2021-09-08 10:27:16,125 - DataStats - INFO - seg_meta_dict statistics:
+Type: <class 'dict'>
+Value: {'sizeof_hdr': array(348, dtype=int32), 'extents': array(0, dtype=int32), 'session_error': array(0, dtype=int16), 'dim_info': array(0, dtype=uint8), 'dim': array([  3, 256, 256, 256,   1,   1,   1,   1], dtype=int16), 'intent_p1': array(0., dtype=float32), 'intent_p2': array(0., dtype=float32), 'intent_p3': array(0., dtype=float32), 'intent_code': array(0, dtype=int16), 'datatype': array(2, dtype=int16), 'bitpix': array(8, dtype=int16), 'slice_start': array(0, dtype=int16), 'pixdim': array([-1.,  1.,  1.,  1.,  0.,  0.,  0.,  0.], dtype=float32), 'vox_offset': array(0., dtype=float32), 'scl_slope': array(nan, dtype=float32), 'scl_inter': array(nan, dtype=float32), 'slice_end': array(0, dtype=int16), 'slice_code': array(0, dtype=uint8), 'xyzt_units': array(10, dtype=uint8), 'cal_max': array(0., dtype=float32), 'cal_min': array(0., dtype=float32), 'slice_duration': array(0., dtype=float32), 'toffset': array(0., dtype=float32), 'glmax': array(0, dtype=int32), 'glmin': array(0, dtype=int32), 'qform_code': array(2, dtype=int16), 'sform_code': array(2, dtype=int16), 'quatern_b': array(0., dtype=float32), 'quatern_c': array(1., dtype=float32), 'quatern_d': array(0., dtype=float32), 'qoffset_x': array(128., dtype=float32), 'qoffset_y': array(-146., dtype=float32), 'qoffset_z': array(-110., dtype=float32), 'srow_x': array([ -1.,   0.,   0., 128.], dtype=float32), 'srow_y': array([   0.,    1.,    0., -146.], dtype=float32), 'srow_z': array([   0.,    0.,    1., -110.], dtype=float32), 'affine': array([[   1.,    0.,    0., -127.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'original_affine': array([[  -1.,    0.,    0.,  128.],
+       [   0.,    1.,    0., -146.],
+       [   0.,    0.,    1., -110.],
+       [   0.,    0.,    0.,    1.]]), 'as_closest_canonical': True, 'spatial_shape': array([256, 256, 256], dtype=int16), 'original_channel_dim': 'no_channel', 'filename_or_obj': '../dummy_data/labels/psCROMIS2ICH_01041-0005-00002-000001.nii.gz'}
+2021-09-08 10:27:16,125 - DataStats - INFO - img_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(96, 224), (105, 233), (12, 140)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]
+2021-09-08 10:27:16,125 - DataStats - INFO - seg_transforms statistics:
+Type: <class 'list'>
+Value: [{'class': 'RandSpatialCropd', 'id': 139816158012368, 'orig_size': (256, 256, 256), 'extra_info': {'slices': [(96, 224), (105, 233), (12, 140)]}}, {'class': 'ToTensord', 'id': 139816158012416, 'orig_size': (128, 128, 128)}]

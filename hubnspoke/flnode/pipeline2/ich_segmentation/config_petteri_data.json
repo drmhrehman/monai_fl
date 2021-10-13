@@ -1,0 +1,52 @@
+{
+    "name": "BasicUnet_CoordConv_elastic_petteri_processing_canonical",
+    "model_notes": "",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "BasicUnet",
+        "args": {}
+    },
+    "data_loader": {
+        "args": {
+            "image_dir": "../data/cromis/processed_petteri/CT/labeled/MNI_1mm_256vx-3D/data/BM4D_nonNaN_-100/",
+            "label_dir": "../data/cromis/processed_petteri/CT/labeled/MNI_1mm_256vx-3D/labels/voxel/hematomaAll/",
+            "batch_size": 4,
+            "shuffle": true,
+            "validation_split": 0.1,
+            "num_workers": 4
+        },
+        "type": "CTDataLoader"
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 0.001,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "loss": "dice_loss",
+    "metrics": [
+        "mean_dice"
+    ],
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 50,
+            "gamma": 0.1
+        }
+    },
+    "trainer": {
+        "epochs": 300,
+
+        "save_dir": "../logging/",
+        "save_period": 5,
+        "verbosity": 2,
+        
+        "monitor": "min val_loss",
+        "early_stop": 60,
+
+        "tensorboard": true
+    }
+}

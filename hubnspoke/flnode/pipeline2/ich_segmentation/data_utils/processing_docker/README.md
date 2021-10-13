@@ -1,0 +1,2 @@
+Build the docker image used for proprocessing by running `build_image.sh`. This pulls Paul's image containing Matlab,
+SPM and spm-hospital-preproc, and adds a non-root user so the docker image can save to the filesystem.
