@@ -5,7 +5,7 @@ import torch as t
 from monai.networks.nets import densenet121
 from monai.transforms import (Activations, AddChannel, AsDiscrete, Compose, LoadImage, RandFlip, RandRotate, RandZoom,
     ScaleIntensity, ToTensor,)
-from flnode.pipeline2.monaiopener_nii import MonaiOpener, MedNISTDataset
+from flnode.pipeline2.monaiopener_nii import MonaiOpenerNii, MedNISTDataset
 from flnode.pipeline2.monaialgo_nii import MonaiAlgo
 from common.utils import Mapping
 
@@ -24,7 +24,7 @@ def instantiateMonaiAlgo(frac_val = 0.1, frac_test = 0.1, dataset_name='MedicalD
     data_dir = os.path.join(data_path, datasetName)
     folders = os.listdir(data_dir)
 
-    mo = MonaiOpener(data_dir)
+    mo = MonaiOpenerNii(data_dir)
     logger.info("----------------------------")
     logger.info("Dataset Summary")
     print("----------------------------")

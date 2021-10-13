@@ -9,6 +9,7 @@ sys.path.append('.')
 from concurrent import futures
 from io import BytesIO
 import grpc
+import json
 from common import monaifl_pb2_grpc as monaifl_pb2_grpc
 from common.monaifl_pb2 import ParamsResponse
 from common.utils import Mapping
@@ -27,6 +28,10 @@ headModelFile = os.path.join(headmodelpath, modelName)
 
 trunkmodelpath = os.path.join(cwd, "save","models","node2","trunk")
 trunkModelFile = os.path.join(trunkmodelpath, modelName)
+
+configpath = os.path.join(cwd, "save","configs","node2")
+configName = 'config.json'
+configFile = os.path.join(configpath, configName)
 
 w_loc = []
 request_data = Mapping()
@@ -56,11 +61,15 @@ class MonaiFLService(monaifl_pb2_grpc.MonaiFLServiceServicer):
     def MessageTransfer(self, request, context):
         request_bytes = BytesIO(request.para_request)
         request_data = t.load(request_bytes, map_location='cpu')
+        print(request_data['trainer']['epochs'])
         logger.info('received training configurations')
-        logger.info(f"local epochs to run: {request_data['epochs']}")
+        #logger.info(f"local epochs to run: {request_data['epochs']}")
         # training and checkpoints
+        with open(configFile, 'w') as json_file:
+            json.dump(request_data, json_file, indent=4)
         logger.info("starting training...")
-        ma.epochs = int(request_data['epochs'])
+        
+        ma.epochs = int(request_data['trainer']['epochs'])
         checkpoint = Mapping()
         checkpoint = ma.train()
         logger.info("saving trained local model...")
@@ -74,7 +83,7 @@ class MonaiFLService(monaifl_pb2_grpc.MonaiFLServiceServicer):
     
     def NodeStatus(self, request, context):
         logger.info("received status request")
-        
+                
         request_data.update(reply="alive")
         logger.info("node status: alive")
         

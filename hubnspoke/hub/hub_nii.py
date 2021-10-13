@@ -1,11 +1,11 @@
 from pathlib import Path
 cwd = str(Path.cwd())
-print(cwd)
+#print(cwd)
 
 import os
 import sys
 sys.path.append('.')
-
+import json
 import grpc
 from common.monaifl_pb2_grpc import MonaiFLServiceStub
 from common.monaifl_pb2 import ParamsRequest
@@ -22,8 +22,11 @@ logger.setLevel(logging.NOTSET)
 
 modelpath = os.path.join(cwd, "save","models","hub")
 modelName = "segment-test.pth.tar"
-
 modelFile = os.path.join(modelpath, modelName)
+
+configpath = os.path.join(cwd, "save","configs","hub")
+configName = 'config_nii.json'
+configFile = os.path.join(configpath, configName)
 w_loc = list() 
 w_glob = list() 
 request_data = Mapping()
@@ -70,13 +73,14 @@ class Client():
         else:
             logger.error(f"{self.address} is not whitelisted. Please contact admin for permissions")
 
-    def train(self, epochs):
-        self.data = {"epochs": epochs}
+    def train(self):
+        with open(configFile) as f:
+            self.data = json.load(f)
         buffer = BytesIO()
         t.save(self.data, buffer)
         size = buffer.getbuffer().nbytes
 
-        logger.info(f"sending the training request to {self.address} for {epochs} epochs...")
+        logger.info(f"sending the training configurations to {self.address}...")
         opts = [('grpc.max_receive_message_length', 1000*1024*1024), ('grpc.max_send_message_length', size*2), ('grpc.max_message_length', 1000*1024*1024)]
         self.channel = grpc.insecure_channel(self.address, options = opts)
         client = MonaiFLServiceStub(self.channel)

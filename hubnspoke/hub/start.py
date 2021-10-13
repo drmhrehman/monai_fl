@@ -40,7 +40,7 @@ def train_plan(client):
     try:
         if(client.status() == "alive"):
             # initializing training on nodes
-            client.train(epochs='1')
+            client.train()
     except:
         logger.info(f"client {client.address} is dead...")
     
