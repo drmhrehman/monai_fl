@@ -1,1 +1,0 @@
-docker build -t spm_preprocess .

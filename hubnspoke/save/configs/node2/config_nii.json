@@ -2,14 +2,13 @@
     "name": "BasicUnet_128_patches_run2",
     "model_notes": "",
     "n_gpu": 1,
-
     "arch": {
         "type": "BasicUnet",
         "args": {}
     },
     "data_loader": {
         "type": "CTDataLoader",
-        "args":{
+        "args": {
             "image_dir": "../dummy_data/images/",
             "label_dir": "../dummy_data/labels/",
             "batch_size": 3,
@@ -20,7 +19,7 @@
     },
     "optimizer": {
         "type": "Adam",
-        "args":{
+        "args": {
             "lr": 0.001,
             "weight_decay": 0,
             "amsgrad": true
@@ -39,14 +38,11 @@
     },
     "trainer": {
         "epochs": 3,
-
         "save_dir": "../logging/",
         "save_period": 5,
         "verbosity": 2,
-        
         "monitor": "min val_loss",
         "early_stop": 60,
-
         "tensorboard": true
     }
 }
