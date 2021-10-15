@@ -8,7 +8,8 @@ from flnode.pipeline2.algo import Algo
 from common.utils import Mapping
 from monai.metrics import compute_roc_auc
 from monai.utils import set_determinism
-
+from monai.inferers import sliding_window_inference
+import numpy as np
 if torch.cuda.is_available():
     DEVICE = "cuda:0"
 else:
@@ -28,81 +29,62 @@ class MonaiAlgo(Algo):
         self.train_ds = None
         self.val_ds = None
         self.test_ds = None
-        self.act = None
-        self.to_onehot = None
         self.model_dir = None
+        self.metric = None
 
-    def train(self, X, y, models, rank):
-        epoch_num = 4
 
     def train(self):
-        # # """## Set deterministic training for reproducibility"""
-        set_determinism(seed=0)
-        # device = torch.device(DEVICE)    
-        # val_interval = 1
-        # best_metric = -1
-        # best_metric_epoch = -1
-        # epoch_loss_values = list()
-        # metric_values = list()
+        print('In train loop')
+        # Set deterministic training for reproducibility
+        #set_determinism(seed=0)
+        device = torch.device(DEVICE)
+        val_interval = 1
+        best_metric = -1
+        best_metric_epoch = -1
+        epoch_loss_values = list()
+        metric_values = list()
 
-        # self.model.to(device)
-        # for epoch in range(self.epochs):
-        #     print("-" * 10)
-        #     print(f"epoch {epoch + 1}/{self.epochs}")
-        #     self.model.train()
-        #     epoch_loss = 0
-        #     step = 0
-        #     for batch_data in self.train_loader:
-        #         step += 1
-        #         inputs, labels = batch_data[0].to(device), batch_data[1].to(device)
-        #         self.optimizer.zero_grad()
-        #         outputs = self.model(inputs)
-        #         loss = self.loss_function(outputs, labels)
-        #         loss.backward()
-        #         self.optimizer.step()
-        #         epoch_loss += loss.item()
-        #         print(f"{step}/{len(self.train_ds) // self.train_loader.batch_size}, train_loss: {loss.item():.4f}")
-        #         epoch_len = len(self.train_ds) // self.train_loader.batch_size
-        # epoch_loss /= step
-        # epoch_loss_values.append(epoch_loss)
-        # print(f"epoch {epoch + 1} average loss: {epoch_loss:.4f}")
+        self.model.to(device)
+        for epoch in range(self.epochs):
+            print("-" * 10)
+            print(f"epoch {epoch + 1}/{self.epochs}")
+            self.model.train()
+            for batch_idx, (data_batch) in enumerate(self.train_loader):
+                data, target = data_batch['img'].to(DEVICE), data_batch['seg'].to(DEVICE)
 
-        # if (epoch + 1) % val_interval == 0:
-        #     self.model.eval()
-        #     with torch.no_grad():
-        #         y_pred = torch.tensor([], dtype=torch.float32, device=device)
-        #         y = torch.tensor([], dtype=torch.long, device=device)
-        #         for val_data in self.val_loader:
-        #             val_images, val_labels = (
-        #                 val_data[0].to(device),
-        #                 val_data[1].to(device),
-        #             )
-        #             y_pred = torch.cat([y_pred, self.model(val_images)], dim=0)
-        #             y = torch.cat([y, val_labels], dim=0)
+                self.optimizer.zero_grad()
+                output = self.model(data)
+                loss = self.loss(output, target)
+                loss.backward()
+                self.optimizer.step()
 
-        #         y_onehot = self.to_onehot(y[None, ...]).T
-        #         y_pred_act = self.act(y_pred)
-        #         auc_metric = compute_roc_auc(y_pred_act, y_onehot)
-        #         del y_pred_act, y_onehot
-        #         metric_values.append(auc_metric)
-        #         acc_value = torch.eq(y_pred.argmax(dim=1), y)
-        #         acc_metric = acc_value.sum().item() / len(acc_value)
-        #         if auc_metric > best_metric:
-        #             best_metric = auc_metric
-        #             best_metric_epoch = epoch + 1
-        #             best_model = self.model.state_dict()
-        #         #    torch.save(self.model.state_dict(), os.path.join(self.model_dir, "best_metric_model.pth"))
-        #         #    print("saved new best metric model")
-        #         print(
-        #             f"current epoch: {epoch + 1} current AUC: {auc_metric:.4f}"
-        #             f" current accuracy: {acc_metric:.4f} best AUC: {best_metric:.4f}"
-        #             f" at epoch: {best_metric_epoch}"
-        #         )
-        # checkpoint = Mapping()
-        # #np_arr = torch_tensor
-        # checkpoint.update(epoch=best_metric_epoch, weights=best_model, metric=best_metric)
-        # print(f"train completed, best_metric: {best_metric:.4f} at epoch: {best_metric_epoch}")
-        #return checkpoint
+
+            if (epoch + 1) % val_interval == 0:
+                print('Validating')
+                self.model.eval()
+                with torch.no_grad():
+                    val_metrics = []
+                    for batch_idx, (data_batch) in enumerate(self.val_loader):
+                        data, target = data_batch['img'].to(DEVICE), data_batch['seg'].to(DEVICE)
+
+                        output_logits = sliding_window_inference(data,
+                                                                 sw_batch_size=2,
+                                                                 roi_size=(128, 128, 128),
+                                                                 predictor=self.model,
+                                                                 overlap=0.25,
+                                                                 do_sigmoid=False)
+                        output = torch.sigmoid(output_logits)
+
+                        #loss = self.criterion(output, target)
+                        val_metrics.append(self.metric(output, target, include_background=False).cpu().numpy())
+                mean_val_metric = np.mean(val_metrics)
+                print(mean_val_metric)
+
+        checkpoint = Mapping()
+        checkpoint.update(epoch=epoch, weights=self.model.state_dict(), metric=mean_val_metric)
+        #print(f"train completed, best_metric: {best_metric:.4f} at epoch: {best_metric_epoch}")
+        return checkpoint
+
 
 
     def load_model(self, modelFile):
@@ -113,28 +95,29 @@ class MonaiAlgo(Algo):
         pass
         # json.dump(model, path)
 
-    def predict(self, class_names, headModelFile):
+    def predict(self, headModelFile):
         set_determinism(seed=0)
-        # device = torch.device(DEVICE) 
-        # self.load_model(headModelFile)
-        # self.model.to(device)
-        # self.model.eval()
+        device = torch.device(DEVICE)
+        self.load_model(headModelFile)
+        self.model.to(device)
+        self.model.eval()
 
-        # y_true = []
-        # y_pred = []
-        # with torch.no_grad():
-        #     for test_data in self.test_loader:
-        #         test_images, test_labels = (
-        #             test_data[0].to(device),
-        #             test_data[1].to(device),
-        #         )
-        #         pred = self.model(test_images).argmax(dim=1)
-        #         for i in range(len(pred)):
-        #             y_true.append(test_labels[i].item())
-        #             y_pred.append(pred[i].item())
-            
-        # test_report = Mapping()
-        # test_report.update(report=classification_report(
-        # y_true, y_pred, target_names=class_names, digits=4))
+        dice_scores = []
+        with torch.no_grad():
+            for data_batch in self.test_loader:
+                data, target = data_batch['img'].to(DEVICE), data_batch['seg'].to(DEVICE)
+
+                output_logits = sliding_window_inference(data,
+                                                         sw_batch_size=2,
+                                                         roi_size=(128, 128, 128),
+                                                         predictor=self.model,
+                                                         overlap=0.25,
+                                                         do_sigmoid=False)
+                output = torch.sigmoid(output_logits)
+
+                # loss = self.criterion(output, target)
+                dice_scores.append(self.metric(output, target, include_background=False).cpu().numpy())
+        test_report = Mapping()
+        test_report.update(report=dice_scores, target_names='dice', digits=4)
         
-        #return test_report
+        return test_report

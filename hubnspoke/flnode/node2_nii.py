@@ -35,7 +35,7 @@ configFile = os.path.join(configpath, configName)
 
 w_loc = []
 request_data = Mapping()
-ma, class_names = instantiateMonaiAlgo(0.4, 0.5, 'MedicalDecathlon2')
+ma = instantiateMonaiAlgo(0.2, 0.2, 'MedicalDecathlon2')
 
 class MonaiFLService(monaifl_pb2_grpc.MonaiFLServiceServicer):
     def __init__(self, stop_event):
@@ -96,7 +96,7 @@ class MonaiFLService(monaifl_pb2_grpc.MonaiFLServiceServicer):
         buffer = BytesIO()
         if os.path.isfile(trunkModelFile):
                 logger.info(f"sending trained model {trunkModelFile} to the central Hub...") 
-                checkpoint = t.load(trunkModelFile)
+                checkpoint = t.load(trunkModelFile, map_location='cpu')
                 t.save(checkpoint, buffer)
 
         return ParamsResponse(para_response=buffer.getvalue())
@@ -114,7 +114,7 @@ class MonaiFLService(monaifl_pb2_grpc.MonaiFLServiceServicer):
         logger.info('received test request')
 
         response_data = Mapping()
-        response_data = ma.predict(class_names, headModelFile)
+        response_data = ma.predict(headModelFile)
 
         logger.info("sending test report to the Central Hub...")       
         buffer = BytesIO()

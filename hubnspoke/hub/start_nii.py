@@ -4,7 +4,7 @@ cwd = str(Path.cwd())
 import sys
 sys.path.append('.')
 import os
-from hub import Client
+from hub_nii import Client
 import time
 import logging
 import concurrent.futures
